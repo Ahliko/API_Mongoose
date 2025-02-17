@@ -11,7 +11,8 @@ services:
             db:
 
     api:
-        image: ahliko/api_mongoose
+#        image: ahliko/api_mongoose
+        build: .
         container_name: api
         ports:
             - "3000:3000"
