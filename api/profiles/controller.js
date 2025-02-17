@@ -2,10 +2,20 @@ const Profile = require('./model');
 
 exports.getAllProfiles = async (req, res) => {
     try {
-        const profiles = await Profile.find();
+        const { skills, localisation } = req.query;
+        let filter = {};
+
+        if (skills) {
+            filter.skills = { $in: skills.split(',') };
+        }
+        if (localisation) {
+            filter['information.localisation'] = localisation;
+        }
+
+        const profiles = await Profile.find(filter);
         res.status(200).json(profiles);
     } catch (error) {
-        res.status(500).json({message: 'Erreur serveur', error});
+        res.status(500).json({ message: 'Erreur serveur', error });
     }
 };
 

@@ -2,12 +2,26 @@ services:
     mongo:
         image: mongo:latest
         container_name: mongo_container
-        ports:
-            - "27017:27017"
         volumes:
             - mongo_data:/data/db
         environment:
             - MONGO_INITDB_ROOT_USERNAME:root
             - MONGO_INITDB_ROOT_PASSWORD:example
+        networks:
+            db:
+
+    api:
+        image: ahliko/api_mongoose
+        container_name: api
+        ports:
+            - "3000:3000"
+        volumes:
+            -   ./.env:/app/.env
+        networks:
+            db:
+
 volumes:
     mongo_data:
+
+networks:
+    db:

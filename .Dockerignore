@@ -1,0 +1,9 @@
+node_modules/
+.idea/
+docker-compose.yaml
+Dockerfile
+.gitignore
+LICENSE
+README.md
+.env
+API_mongoose.postman_collection.json

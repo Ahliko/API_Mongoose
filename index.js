@@ -1,6 +1,6 @@
 const express = require('express');
 const connectDB = require('./mongodb');
-const profileRoutes = require('./api/profiles');
+const routes = require('./api/profiles/routes');
 const dotenv = require('dotenv');
 
 dotenv.config();
@@ -9,8 +9,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
-
-app.use('/api', profileRoutes);
+app.use(routes);
 
 connectDB().then(() => {
     app.listen(port, () => {
